@@ -23,6 +23,7 @@
 import base
 import sys
 from base import main, setUpModule, tearDownModule  # noqa
+from conftest import skipIfTainted
 
 import logging
 logger = logging.getLogger('hidtools.test.hid')
@@ -138,6 +139,7 @@ class TestCollectionOverflow(base.BaseTestCase.TestUhid):
         ]
         return base.UHIDTestDevice(name=None, rdesc=report_descriptor, application='Mouse')
 
+    @skipIfTainted
     def test_rdesc(self):
         '''
         This test can only check for negatives. If the kernel crashes, you

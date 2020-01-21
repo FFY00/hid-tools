@@ -43,3 +43,16 @@ def setup_rlimit():
 @pytest.fixture(autouse=True, scope='session')
 def setup_environ_var():
     os.environ['PYTEST_RUNNING'] = '1'
+
+
+def skipIfTainted(func):
+    def wrapper(*args, **kwargs):
+        try:
+            with open('/proc/sys/kernel/tainted', 'r') as f:
+                if int(f.readline()) & (1 << 5):  # TAINT_BAD_PAGE
+                    print('skipping...')
+                    return
+        except (FileNotFoundError, ValueError):
+            pass
+        func(*args, **kwargs)
+    return wrapper
