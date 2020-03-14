@@ -1511,7 +1511,7 @@ class ReportDescriptor(object):
         :param File dump_file: the file to write to
         :param str output_type: the output format, one of "default" or "kernel"
         """
-        assert output_type in ["default", "kernel"]
+        assert output_type in ["default", "kernel", "lsusb"]
 
         indent = 0
         for rdesc_item in self.rdesc_items:
@@ -1519,6 +1519,8 @@ class ReportDescriptor(object):
                 indent = rdesc_item.dump_rdesc_array(indent, dump_file)
             elif output_type == "kernel":
                 indent = rdesc_item.dump_rdesc_kernel(indent, dump_file)
+            elif output_type == "lsusb":
+                indent = rdesc_item.dump_rdesc_lsusb(indent, dump_file)
 
     @property
     def size(self):
