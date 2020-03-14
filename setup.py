@@ -6,6 +6,8 @@ import io
 from setuptools import setup
 from setuptools.command.install import install
 
+import hidtools
+
 
 class ManPageGenerator(install):
     def run(self):
@@ -61,7 +63,7 @@ class ManPageGenerator(install):
 
 
 setup(name='hid-tools',
-      version='0.2',
+      version=hidtools.__version__,
       description='HID tools',
       long_description=open('README.md', 'r').read(),
       long_description_content_type='text/markdown',

@@ -5,3 +5,5 @@ logger = logging.getLogger('hidtools')
 # loggers to become verbose too.
 if os.environ.get('HID_DEBUG', False):
     logger.setLevel(logging.DEBUG)
+
+__version__ = 0.2
