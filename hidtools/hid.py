@@ -609,22 +609,9 @@ class _HidRDescItem(object):
         """
         Format the hid item in a lsusb -v format.
         """
-        item = self.item()
-        up = self.usage_page
-        value = self.value
-        data = "none"
-        if item != "End Collection":
-            data = " ["
-            for v in self.raw_value:
-                data += f' 0x{v & 0xff:02x}'
-            data += f' ] {value}'
-        dump_file.write(f'            Item({hid_type[item]:6s}): {item}, data={data}\n')
-        if item == "Usage":
-            try:
-                page_id = up >> 16
-                dump_file.write(f'                 {HUT[page_id][value]}\n')
-            except KeyError:
-                pass
+        descr, indent = self.get_human_descr(indent)
+        dump_file.write(f'  {descr}\n')
+        return indent
 
 
 class HidField(object):
