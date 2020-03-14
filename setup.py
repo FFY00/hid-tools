@@ -77,6 +77,7 @@ setup(name='hid-tools',
               'hid-decode= hidtools.cli.decode:main',
               'hid-recorder = hidtools.cli.record:main',
               'hid-replay = hidtools.cli.replay:main',
+              'lshid = hidtools.cli.ls:main',
           ]
       },
       classifiers=[
